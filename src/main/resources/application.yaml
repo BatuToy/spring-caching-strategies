@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: cache.demo
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: pass
+    url: jdbc::postgres://localhost:5433/cache-demo-db?schema=caffeine
+
+  jpa:
+    database: postgresql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+        format_sql: true
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    org.hibernate.sql: debug

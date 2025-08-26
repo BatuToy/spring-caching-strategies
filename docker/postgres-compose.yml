@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: cache-demo-db
+    image: postgres:18beta3-alpine
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "pass"
+      POSTGRES_DB: "cache-demo-db"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/pgdata
+
+
