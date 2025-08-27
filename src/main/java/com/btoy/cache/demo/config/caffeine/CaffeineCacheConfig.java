@@ -12,19 +12,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.Duration;
+import java.util.List;
 
 @Configuration
 public class CaffeineCacheConfig {
 
     @Bean("caffeineCacheManager")
     public CacheManager caffeineCacheManager() {
-        CaffeineCacheManager caffeineCacheManager =  new CaffeineCacheManager("productById", "categoryById");
+        CaffeineCacheManager caffeineCacheManager =  new CaffeineCacheManager();
+        caffeineCacheManager.setCacheNames(List.of("productById", "categoryById"));
         caffeineCacheManager
                 .setCaffeine(Caffeine.newBuilder()
                         .initialCapacity(100)
                         .maximumSize(5000)
-                        .expireAfterWrite(Duration.ofMinutes(1)) // TTL Bound!
-                        .refreshAfterWrite(Duration.ofMinutes(1)) // TTI
+                        .expireAfterWrite(Duration.ofMinutes(1)) // TTL Bound! (Time TO Live !)
+                        //.refreshAfterWrite(Duration.ofMinutes(1)) // TTI (Time TO Idle !)
                         .recordStats());
         return caffeineCacheManager;
     }

@@ -6,7 +6,12 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: pass
-    url: jdbc::postgres://localhost:5433/cache-demo-db?schema=caffeine
+    url: jdbc:postgresql://[::1]:5433/cache-demo-db?currentSchema=caffeine
+    # [::1] -> ipV6 connection to Db server or 127.0.0.1 || localhost  -> ipV4 connection to Db server !!!
+
+  sql:
+    init:
+      mode: always
 
   jpa:
     database: postgresql
@@ -15,23 +20,29 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         show-sql: true
         format_sql: true
+        generate_statistics: true
+        connection:
+          pool_size: 100
         ################################
-        #       CACHING CONFIG
+        ####### CACHING CONFIG #########
         ################################
+        javax:
+          cache:
+            provider: com.github.benmanes.caffeine.jcache.spi.CaffeineCachingProvider
+            missing_cache_strategy: create
         cache:
           use_second_level_cache: true
           use_query_cache: true
+          region:
+            factory_class: org.hibernate.cache.jcache.JCacheRegionFactory
           jakarta:
             persistence:
               sharedCache:
-                mode: ENABLE_SELECTIVE
-  sql:
-    init:
-      mode: always
+                mode: ENABLE_SELECTIVE # What is this configuration ?
 
 logging:
   level:
-    org.hibernate.sql: debug
+    org.hibernate.sql: info
 
 server:
   port: 9090

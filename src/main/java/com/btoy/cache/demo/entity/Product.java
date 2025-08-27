@@ -2,6 +2,7 @@ package com.btoy.cache.demo.entity;
 
 import jakarta.persistence.*; // this package provides a L2 cache by JPA !
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.math.BigDecimal;
 import java.util.Locale;
@@ -14,6 +15,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Cacheable
+@org.hibernate.annotations.Cache(
+        usage = CacheConcurrencyStrategy.READ_WRITE
+)
 public class Product {
 
     @Id

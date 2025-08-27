@@ -7,6 +7,7 @@ package com.btoy.cache.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.List;
 import java.util.Locale;
@@ -23,6 +24,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Cacheable
+@org.hibernate.annotations.Cache(
+        usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Category {
 
     @Column(name = "CATEGORY_ID")
@@ -32,7 +35,7 @@ public class Category {
     @Column(name = "NAME")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<Product> products;
 
     @PrePersist
