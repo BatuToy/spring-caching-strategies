@@ -16,6 +16,7 @@ import java.util.UUID;
 @Builder
 @Cacheable
 @org.hibernate.annotations.Cache(
+        region = "product",
         usage = CacheConcurrencyStrategy.READ_WRITE
 )
 public class Product {

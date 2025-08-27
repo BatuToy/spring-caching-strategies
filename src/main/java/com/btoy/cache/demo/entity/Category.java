@@ -25,6 +25,7 @@ import java.util.UUID;
 @Builder
 @Cacheable
 @org.hibernate.annotations.Cache(
+        region = "category",
         usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Category {
 

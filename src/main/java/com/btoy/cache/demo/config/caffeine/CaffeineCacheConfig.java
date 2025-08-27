@@ -20,7 +20,7 @@ public class CaffeineCacheConfig {
     @Bean("caffeineCacheManager")
     public CacheManager caffeineCacheManager() {
         CaffeineCacheManager caffeineCacheManager =  new CaffeineCacheManager();
-        caffeineCacheManager.setCacheNames(List.of("productById", "categoryById"));
+        caffeineCacheManager.setCacheNames(List.of("product", "category"));
         caffeineCacheManager
                 .setCaffeine(Caffeine.newBuilder()
                         .initialCapacity(100)
