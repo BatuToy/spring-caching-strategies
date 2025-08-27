@@ -6,7 +6,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: pass
-    url: jdbc:postgresql://[::1]:5433/cache-demo-db?currentSchema=caffeine
+    url: jdbc:postgresql://[::1]:5433/cache-demo-db
     # [::1] -> ipV6 connection to Db server or 127.0.0.1 || localhost  -> ipV4 connection to Db server !!!
 
   sql:
@@ -15,6 +15,8 @@ spring:
 
   jpa:
     database: postgresql
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect

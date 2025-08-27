@@ -8,7 +8,12 @@ package com.btoy.cache.demo.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Getter
 public class ProductResponseDto {
+
+    private final String name;
+    private final String skuCode;
 }
