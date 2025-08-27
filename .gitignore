@@ -34,4 +34,5 @@ build/
 
 ### Docker ###
 /docker/pgdata/
+/db_props.env
 
