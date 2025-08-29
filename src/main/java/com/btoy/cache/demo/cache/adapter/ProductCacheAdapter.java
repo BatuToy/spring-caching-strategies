@@ -3,7 +3,7 @@ package com.btoy.cache.demo.cache.adapter;
 import com.btoy.cache.demo.application.port.out.ProductCachePort;
 import com.btoy.cache.demo.cache.KeyGenerator;
 import com.btoy.cache.demo.application.cacheable_dto.ProductDto;
-import com.btoy.cache.demo.cache.port.CachePort;
+import com.btoy.cache.demo.infra.CachePort;
 import jakarta.annotation.Nullable;
 import org.springframework.stereotype.Component;
 

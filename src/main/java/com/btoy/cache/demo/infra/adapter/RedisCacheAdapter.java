@@ -1,6 +1,6 @@
 package com.btoy.cache.demo.infra.adapter;
 
-import com.btoy.cache.demo.cache.port.CachePort;
+import com.btoy.cache.demo.infra.CachePort;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
