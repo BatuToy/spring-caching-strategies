@@ -4,12 +4,16 @@ import jakarta.persistence.*; // this package provides a L2 cache by JPA !
 import lombok.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Locale;
 import java.util.UUID;
 
 @Entity(name = "product")
-@Table(name = "t_product")
+@Table(name = "t_product", indexes = {
+        @Index(name = "idx_product_name", columnList = "PRODUCT_NAME"),
+        @Index(name = "idx_product_category_id", columnList = "CATEGORY_ID")
+})
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +23,7 @@ import java.util.UUID;
         region = "product",
         usage = CacheConcurrencyStrategy.READ_WRITE
 )
-public class Product {
+public class Product implements Serializable {
 
     @Id
     @Column(name = "PRODUCT_ID")
@@ -38,7 +42,6 @@ public class Product {
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "CATEGORY_ID")
     private Category category;
 
-    // Insert's could block this @PrePersist!
     @PrePersist
     private void prePersist() {
         this.id = UUID.randomUUID().toString().replace("-", "").toLowerCase(new Locale("en", "EN"));

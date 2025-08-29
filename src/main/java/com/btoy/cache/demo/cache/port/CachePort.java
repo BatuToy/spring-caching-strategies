@@ -1,4 +1,4 @@
-package com.btoy.cache.demo.port;
+package com.btoy.cache.demo.cache.port;
 
 import jakarta.annotation.Nullable;
 

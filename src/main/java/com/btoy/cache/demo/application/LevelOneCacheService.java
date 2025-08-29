@@ -1,5 +1,6 @@
 package com.btoy.cache.demo.application;
 
+import com.btoy.cache.demo.application.cacheable_dto.ProductDto;
 import com.btoy.cache.demo.application.port.in.ApplicationService;
 import com.btoy.cache.demo.dto.ProductResponseDto;
 import com.btoy.cache.demo.entity.Product;
@@ -16,11 +17,11 @@ import java.util.logging.Logger;
  * @created 26/08/2025 ~~ 20:25
  * author: batu
  */
-@Service
+@Service("level1")
 @RequiredArgsConstructor
-public class CaffeineCacheServiceImpl  { // L1 Caffeine Cache service !!!
+public class LevelOneCacheService implements ApplicationService { // L1 Caffeine Cache service !!!
 
-    private static final Logger log = Logger.getLogger(CaffeineCacheServiceImpl.class.getSimpleName());
+    private static final Logger log = Logger.getLogger(LevelOneCacheService.class.getSimpleName());
 
     @PersistenceContext
     private final EntityManager entityManager;
@@ -32,7 +33,7 @@ public class CaffeineCacheServiceImpl  { // L1 Caffeine Cache service !!!
                 cacheNames = "product",
                 key = "#id",
                 unless = "#result == null")
-        public ProductResponseDto retrieveProductById(String id) {
+        public ProductDto getProductById(String id) {
             // Check for L1 -> miss -> Check For DB.
             // Check for L1 -> + hits -> returns product's instance.
             Product product1 = entityManager.find(Product.class, id);
@@ -43,6 +44,6 @@ public class CaffeineCacheServiceImpl  { // L1 Caffeine Cache service !!!
             } else {
                 log.info("Product1's and Product2's instances are the different!");
             }
-            return new ProductResponseDto(product2.getName(), product2.getSku());
+            return new ProductDto(product2.getName(), product2.getSku(), product2.getPrice());
     }
 }

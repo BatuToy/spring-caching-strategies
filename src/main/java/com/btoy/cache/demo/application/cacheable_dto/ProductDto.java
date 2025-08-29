@@ -1,13 +1,11 @@
-package com.btoy.cache.demo.dto;
+package com.btoy.cache.demo.application.cacheable_dto;
 
-import com.btoy.cache.demo.cache.Cacheable;
-import com.btoy.cache.demo.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.io.Serializable;
-import java.util.List;
+import java.math.BigDecimal;
 
 /*
  * @created 29/08/2025 ~~ 12:23
@@ -23,5 +21,6 @@ public class ProductDto implements Cacheable, Serializable {
 
     private final String name;
 
-    private final CategoryDto category;
+    private final BigDecimal price;
+
 }

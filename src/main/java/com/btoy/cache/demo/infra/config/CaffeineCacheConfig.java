@@ -1,4 +1,4 @@
-package com.btoy.cache.demo.infra.cache.config;
+package com.btoy.cache.demo.infra.config;
 
 /*
  * @created 26/08/2025 ~~ 21:49

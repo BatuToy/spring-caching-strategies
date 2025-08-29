@@ -1,7 +1,7 @@
 package com.btoy.cache.demo.rest;
 
-import com.btoy.cache.demo.dto.ProductResponseDto;
-import com.btoy.cache.demo.service.CaffeineCacheService;
+import com.btoy.cache.demo.application.cacheable_dto.ProductDto;
+import com.btoy.cache.demo.application.port.in.ApplicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/product")
 public class ProductController {
 
-    private final CaffeineCacheService caffeineCacheService;
+    private final ApplicationService level1;
+    private final ApplicationService level2;
 
-    @GetMapping(value = "/get")
-    public ResponseEntity<ProductResponseDto> retrieveProductById(@RequestParam(value = "id") String productId) {
-        return new ResponseEntity<>(caffeineCacheService.retrieveProductById(productId), HttpStatus.valueOf(200));
+    @GetMapping(value = "/l1")
+    public ResponseEntity<ProductDto> retrieveProductById(@RequestParam(value = "id") String productId) {
+        return new ResponseEntity<>(level1.getProductById(productId), HttpStatus.valueOf(200));
+    }
+
+    @GetMapping(value = "l2")
+    public ResponseEntity<ProductDto> retrieveProductByIdL2(@RequestParam(value = "id") String id) {
+        return ResponseEntity.ok(level2.getProductById(id));
     }
 
 }

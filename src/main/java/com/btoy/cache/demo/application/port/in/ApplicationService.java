@@ -1,4 +1,6 @@
-package com.btoy.cache.demo.application;
+package com.btoy.cache.demo.application.port.in;
+
+import com.btoy.cache.demo.application.cacheable_dto.ProductDto;
 
 /*
  * @created 29/08/2025 ~~ 12:15
@@ -6,5 +8,5 @@ package com.btoy.cache.demo.application;
  */
 public interface ApplicationService {
 
-    void getProductById(String id);
+    ProductDto getProductById(String id);
 }
