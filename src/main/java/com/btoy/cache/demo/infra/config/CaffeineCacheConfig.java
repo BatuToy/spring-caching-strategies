@@ -1,4 +1,4 @@
-package com.btoy.cache.demo.config.caffeine;
+package com.btoy.cache.demo.infra.cache.config;
 
 /*
  * @created 26/08/2025 ~~ 21:49

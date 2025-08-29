@@ -34,5 +34,6 @@ build/
 
 ### Docker ###
 /docker/pgdata/
+/docker/redis_data
 /db_props.env
 
